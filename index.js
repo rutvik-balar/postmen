@@ -92,11 +92,19 @@ submit.addEventListener('click', () => {
     console.log('data is ', data);
 
     // if the request type is get, invoke fetch api to create a post request
+
+    // fetch return promiss 
+    //than first .then also return promiss 
+    // last than add data to html
+    // in case of post request we add object of  method and data we want to post 
+
     if (requestType=='GET'){
         fetch(url, {
             method: 'GET',   
         })
-        .then(response=> response.text())
+        .then((response) => {
+            return response.text();
+        })
         .then((text) =>{
             // document.getElementById('responseJsonText').value = text;
             document.getElementById('responsePrism').innerHTML = text;
@@ -104,6 +112,8 @@ submit.addEventListener('click', () => {
         });
     }
 
+    
+    
     else{
         fetch(url, {
             method: 'POST', 
@@ -112,7 +122,9 @@ submit.addEventListener('click', () => {
                 "Content-type": "application/json; charset=UTF-8"
               }  
         })
-        .then(response=> response.text())
+        .then((response) =>{ 
+            return response.text();
+        })
         .then((text) =>{
             // document.getElementById('responseJsonText').value = text;
             document.getElementById('responsePrism').innerHTML = text;
